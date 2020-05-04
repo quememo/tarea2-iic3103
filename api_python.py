@@ -249,5 +249,5 @@ def delete_ingrediente(id_i):
 
 
 if __name__ == '__main__':
-    # db.create_all()
+    db.create_all()
     flask_app.run()
