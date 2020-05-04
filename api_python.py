@@ -74,7 +74,7 @@ def create_hamburguesa():
     nueva_h = Hamburguesa(nombre=recibido['nombre'], precio=recibido['precio'], descripcion=recibido['descripcion'], imagen=recibido['imagen'])
     db.session.add(nueva_h)
     db.session.commit()
-    return jsonify("Hamburguesa añadida"), "201 hamburguesa creada"
+    return nueva_h.to_json(), "201 hamburguesa creada"
 
 
 @flask_app.route("/hamburguesa/<id_h>")
@@ -143,7 +143,7 @@ def update_hamburguesa(id_h):
     if "imagen" in recibido:
         hamburguesa_buscada.imagen = recibido["imagen"]
     db.session.commit()
-    return jsonify("Hamburguesa actualizada"), "200 operacion exitosa"
+    return hamburguesa_buscada.to_json(), "200 operacion exitosa"
 
 
 @flask_app.route("/hamburguesa/<id_h>/ingrediente/<id_i>", methods=['DELETE'])
@@ -210,7 +210,7 @@ def create_ingrediente():
     new_ingrediente = Ingrediente(nombre=recibido['nombre'], descripcion=recibido['descripcion'])
     db.session.add(new_ingrediente)
     db.session.commit()
-    return jsonify('Ingrediente creado'), '201 ingrediente creado'
+    return new_ingrediente.to_json(), '201 ingrediente creado'
 
 
 @flask_app.route("/ingrediente/<id_i>")
